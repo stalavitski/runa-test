@@ -12,6 +12,12 @@ class Category(models.Model):
         return self.name
 
     def get_parents(self, category):
+        """
+        :param category: Category - current Category instance
+        :return: [Category] - ancestors for current Category
+
+        Recursively create a list of all ancestors (parents, parents of parents etc).
+        """
         if category.parent is None:
             return []
 
@@ -23,4 +29,11 @@ class Category(models.Model):
 
     @property
     def siblings(self):
+        """
+        @TODO Are 1st level Categories siblings to each other?
+        Retrieve sister Categories (same level, same parent) for current category
+        """
+        if not self.parent_id:
+            return []
+
         return Category.objects.exclude(pk=self.pk).filter(parent=self.parent)
