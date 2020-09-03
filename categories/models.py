@@ -30,6 +30,8 @@ class Category(models.Model):
     @property
     def siblings(self):
         """
+        :return: [Category] - siblings for current Category
+
         @TODO Are 1st level Categories siblings to each other?
         Retrieve sister Categories (same level, same parent) for current category
         """
